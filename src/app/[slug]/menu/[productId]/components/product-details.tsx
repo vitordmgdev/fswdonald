@@ -10,8 +10,8 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/lib/helpers/format-currency";
 
-import { CartContext } from "../../contexts/cart";
 import CartSheet from "../../components/cart-sheet";
+import { CartContext } from "../../contexts/cart";
 
 interface ProductDetailsProps {
     product: Prisma.ProductGetPayload<{ include: {restaurant: {
@@ -24,7 +24,7 @@ interface ProductDetailsProps {
 
 const ProductDetails = ({product}: ProductDetailsProps) => {
 
-    const { isOpen, toggleCart } = useContext(CartContext);
+    const { toggleCart, addProduct } = useContext(CartContext);
 
     const [ quantity, setQuantity ] = useState<number>(1);
 
@@ -49,10 +49,12 @@ const ProductDetails = ({product}: ProductDetailsProps) => {
     };
 
     const handleAddToCart = () => {
+        addProduct({
+            ...product,
+            quantity
+        })
         toggleCart()
     };
-
-    console.log({ isOpen })
 
     return ( 
         <>
