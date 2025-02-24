@@ -20,9 +20,11 @@ const CartSheet = () => {
                     <SheetTitle className="text-left">Sacola</SheetTitle>
                 </SheetHeader>
                 <div className="py-5">
-                    {products.map((product) => (
-                        <CartItem key={product.id} product={product} />
-                    ))}
+                    {
+                        products.map(product => (
+                            <CartItem key={product.id} product={product} />
+                        ))
+                    }
                 </div>
             </SheetContent>
         </Sheet>
